@@ -14,8 +14,7 @@ This project contain a form powered by json powerDB which helps in fast and effi
 4. [Illustrations](#illustrations)
 5. [Scope of Functionalities](#scope-of-functionalities)
 6. [Examples of Use](#examples-of-use)
-7. [Project Status](#project-status)
-8. [Sources](#sources)
+7. [Sources](#sources)
 
 ---
 
@@ -43,7 +42,11 @@ This project contain a form powered by json powerDB which helps in fast and effi
 
 ## **Illustrations**
 
-*Include screenshots, diagrams, or flowcharts that help users understand the project.*
+Below are some illustrations to help you understand the project better:
+
+### **User Interface Overview**
+
+![User Interface Screenshot](resources/images/pic1.png "Screenshot of the User Interface")
 
 ## **Scope of Functionalities**
 
@@ -54,15 +57,26 @@ This project contain a form powered by json powerDB which helps in fast and effi
 
 ## **Examples of Use**
 
-*Provide code snippets, use cases, or scenarios where your project can be useful.*
-
 ```javascript
-// Example of a CRUD operation using JsonPowerDB
-const jpdb = new JsonPowerDB({
-  url: 'your-db-url',
-  token: 'your-auth-token',
-});
+// Example of a Update operation using JsonPowerDB
+function changeData(){
+    var jsonchange = validateData()
+    if(jsonchange===""){
+        return 
+    }
+    var updreq = createUPDATERecordRequest(conToken,jsonchange,ShipDB,ShipRel,localStorage.getItem('rec'))
+    $.ajaxSetup({async:false});
+    var resjsonobj = executeCommandAtGivenBaseUrl(updreq,jpdbBaseUrl,jpdbIML)
+    $.ajaxSetup({async:true});
+    resetForm()
+    $('#change').prop('disabled',true)
+    $('#reset').prop('disabled',true)
+    $("#shipno").focus()
+}
+```
 
-jpdb.insert('collection_name', { key: 'value' })
-  .then(response => console.log('Data inserted successfully', response))
-  .catch(error => console.error('Error inserting data', error));
+## **Sources**
+
+*https://login2explore.com/jpdb/docs.html*
+
+
